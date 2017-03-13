@@ -1,0 +1,24 @@
+<launch>
+  <master auto="start"/>
+  <param name="/use_sim_time" value="false"/>
+  
+  <node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" 
+    args="0.0 0.0 0.0 0.0 0.0 0.0 /base_link /laser 40" />
+
+  <node pkg="laser_scan_matcher" type="laser_scan_matcher_node" 
+    name="laser_scan_matcher_node" output="screen">
+    <param name="fixed_frame" value = "odom"/>
+    <param name="use_alpha_beta" value="true"/>
+    <param name="max_iterations" value="10"/>
+  </node>
+
+ <node name="map_server" pkg="map_server" type="map_server" args="/home/edward/catkin_ws/room5017.yaml"/>
+
+  <include file="$(find kursant1_2dnav)/move_base_config/move_base.xml"/>
+<!--  <node name="map_server" pkg="map_server" type="map_server" args="$(find kursant1_2dnav)/map_config/room5017.pgm 0.02" /> -->
+
+
+  <include file="$(find kursant1_2dnav)/move_base_config/amcl_node.xml"/>  
+  <!--<node name="rviz" pkg="rviz" type="rviz" args="-d $(find kursant1_2dnav)/kursant1.rviz" /> -->
+  <node name="rviz" pkg="rviz" type="rviz" /> 
+</launch>

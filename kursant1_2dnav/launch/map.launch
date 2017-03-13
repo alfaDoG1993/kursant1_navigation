@@ -1,0 +1,8 @@
+<launch>
+	<node name="laser_scan_matcher" pkg="laser_scan_matcher" type="laser_scan_matcher_node"/>
+	<node name="gmapping" pkg="gmapping" type="slam_gmapping">
+		<param name="scan" type="string" value="scan"/>
+		<param name="odom_frame" type="string" value="base_link"/>
+	</node>
+	<node name="map_server" pkg="map_server" type="map_server" args="$(find kursant1_2dnav)/map_config/room5017.pgm 0.02" />
+</launch>

@@ -1,0 +1,16 @@
+<launch>
+  <node name="hokuyo" pkg="hokuyo_node" type="hokuyo_node">
+		<remap from="scan" to="base_scan" />
+		<param name="calibrate_time" type="bool" value="false"/>
+		<param name="port" type="string" value="/dev/ttyACM0"/>
+  </node>
+
+  <node name= "kursant1_odom" pkg="rs485_robot_driver" type="main">
+    		<param name="robotBaseWidth" type="double" value="0.275"/>
+                <param name="slipRatio" type="double" value="0.5"/>
+                <param name="laserShift" type="double" value="0.2"/>
+                <param name="ticksPerMeter" type="int" value="600492"/>
+  </node>
+
+  <node name="kursant1_tf" pkg="kursant1_setup_tf" type="kursant1_tf_broadcaster" />
+</launch>

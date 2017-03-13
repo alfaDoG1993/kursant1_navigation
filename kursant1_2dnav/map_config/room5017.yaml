@@ -1,0 +1,7 @@
+image: room5017.pgm
+resolution: 0.020000
+origin: [250.000000, 400.000000, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+
